@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.computosas.vista;
-
+import com.computosas.dao.VentaDAO;
 /**
  *
  * @author ASUS
@@ -28,46 +28,28 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnModuloProductos = new javax.swing.JButton();
         btnModuloClientes = new javax.swing.JButton();
-        btnModuloVentas = new javax.swing.JButton();
+        JReportes = new javax.swing.JButton();
+        btnModuloProductos = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
 
-        jLabel1.setText("Sistema de gestion corporativa");
+        btnModuloClientes.setText("Gestión de Clientes");
+        btnModuloClientes.addActionListener(this::btnModuloClientesActionPerformed);
+
+        JReportes.setText("Reportes de Gerencia");
+        JReportes.addActionListener(this::JReportesActionPerformed);
 
         btnModuloProductos.setText("Gestión de Inventario (Productos)");
         btnModuloProductos.addActionListener(this::btnModuloProductosActionPerformed);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(btnModuloProductos))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel1)))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(btnModuloProductos))
-        );
+        jLabel1.setText("Sistema de gestion corporativa");
 
-        btnModuloClientes.setText("Gestión de Clientes");
-
-        btnModuloVentas.setText("Módulo de Transacciones y Ventas");
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(this::btnRegresarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,25 +58,34 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnModuloVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnModuloClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(103, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnModuloProductos)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnModuloClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JReportes, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnRegresar)))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(4, 4, 4)
+                .addComponent(btnRegresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(44, 44, 44)
+                .addComponent(btnModuloProductos)
+                .addGap(18, 18, 18)
                 .addComponent(btnModuloClientes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnModuloVentas)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(JReportes)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,6 +103,36 @@ ProductoView moduloProductos = new ProductoView();
     // Nota: NO usamos this.dispose() aquí porque queremos que el Menú Principal 
     // se quede abierto de fondo mientras trabajamos en los productos.        // TODO add your handling code here:
     }//GEN-LAST:event_btnModuloProductosActionPerformed
+
+    private void btnModuloClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModuloClientesActionPerformed
+        // TODO add your handling code here:
+  
+    javax.swing.JFrame ventanaClientes = new javax.swing.JFrame("Gestión de Clientes");
+    
+    ventanaClientes.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+    
+    ventanaClientes.add(new com.computosas.vista.ClienteView());
+    
+    ventanaClientes.pack();
+    
+    ventanaClientes.setLocationRelativeTo(null);
+    ventanaClientes.setVisible(true);
+    }//GEN-LAST:event_btnModuloClientesActionPerformed
+
+    private void JReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JReportesActionPerformed
+this.mostrarDashboardGerencial();        // TODO add your handling code here:
+    }//GEN-LAST:event_JReportesActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        // 1. Instanciamos y mostramos la pantalla de Login de Clientes
+    com.computosas.vista.LoginClienteView clienteLogin = new com.computosas.vista.LoginClienteView();
+    clienteLogin.setLocationRelativeTo(null); // Centra la ventana perfectamente en la pantalla
+    clienteLogin.setVisible(true);            // La muestra en pantalla
+    
+    // 2. Cerramos el MainFrame actual para liberar memoria y que no quede en segundo plano
+    this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,12 +158,55 @@ ProductoView moduloProductos = new ProductoView();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
     }
+    private void mostrarDashboardGerencial() {
+    // 1. Aseguramos el nombre exacto de la clase con mayúsculas para evitar errores de compilación
+    com.computosas.dao.VentaDAO ventaDAO = new com.computosas.dao.VentaDAO();
+    java.util.Map<String, Object> metricas = ventaDAO.obtenerMetricasGerenciales();
+    
+    // 2. Extracción segura de datos numéricos (Evita ClassCastException)
+    double totalIngresos = 0.0;
+    int totalVentas = 0;
+    int ventasCompletadas = 0;
+    int ventasCanceladas = 0;
+
+    if (metricas != null) {
+        // Usamos ((Number) objeto).intValue() o doubleValue() para que Java haga la conversión segura
+        totalIngresos = metricas.get("total_ingresos") != null ? ((Number) metricas.get("total_ingresos")).doubleValue() : 0.0;
+        totalVentas = metricas.get("total_ventas") != null ? ((Number) metricas.get("total_ventas")).intValue() : 0;
+        ventasCompletadas = metricas.get("ventas_completadas") != null ? ((Number) metricas.get("ventas_completadas")).intValue() : 0;
+        ventasCanceladas = metricas.get("ventas_canceladas") != null ? ((Number) metricas.get("ventas_canceladas")).intValue() : 0;
+    }
+    
+    // 3. Formateador regional para pesos colombianos ($ 1.587.781.300,00)
+    java.text.DecimalFormatSymbols simbolos = new java.text.DecimalFormatSymbols();
+    simbolos.setDecimalSeparator(',');
+    simbolos.setGroupingSeparator('.');
+    java.text.DecimalFormat df = new java.text.DecimalFormat("$ #,##0.00", simbolos);
+    
+    // 4. Estructuramos el cuerpo del reporte en texto plano formateado
+    String mensaje = "==================================================\n" +
+                     "          CÓMPUTO S.A.S. - DASHBOARD GERENCIAL\n" +
+                     "==================================================\n\n" +
+                     "💰 Total Ingresos Brutos (Con IVA): " + df.format(totalIngresos) + "\n" +
+                     "📦 Volúmen Total de Transacciones: " + totalVentas + " facturas generadas\n\n" +
+                     "----------------------------------------------------------------------\n" +
+                     "                     ESTADO DE LAS OPERACIONES\n" +
+                     "----------------------------------------------------------------------\n\n" +
+                     "✔ Ventas Completadas / Pagadas:  " + ventasCompletadas + "\n" +
+                     "❌ Ventas Canceladas / Devueltas:  " + ventasCanceladas + "\n\n" +
+                     "==================================================\n" +
+                     "Servidor activo en Neon Cloud (PostgreSQL)\n" +
+                     "Actualizado en tiempo real.";
+                     
+    // 5. Desplegamos el cuadro informativo
+    javax.swing.JOptionPane.showMessageDialog(this, mensaje, "Métricas de Control de Operaciones", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JReportes;
     private javax.swing.JButton btnModuloClientes;
     private javax.swing.JButton btnModuloProductos;
-    private javax.swing.JButton btnModuloVentas;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
